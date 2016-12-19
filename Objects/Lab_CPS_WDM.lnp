@@ -1,0 +1,16 @@
+--cpu Cortex-M4.fp
+".\objects\startup_stm32f4xx.o"
+".\objects\system_stm32f4xx.o"
+".\objects\main.o"
+".\objects\periph_init.o"
+".\objects\functions.o"
+".\objects\interrupt_heandler.o"
+".\objects\misc.o"
+".\objects\stm32f4xx_gpio.o"
+".\objects\stm32f4xx_rcc.o"
+".\objects\stm32f4xx_tim.o"
+".\objects\stm32f4xx_usart.o"
+--strict --scatter ".\Objects\Lab_CPS_WDM.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Lab_CPS_WDM.map" -o .\Objects\Lab_CPS_WDM.axf

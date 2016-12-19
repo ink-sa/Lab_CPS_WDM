@@ -1,0 +1,505 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    LPAREN
+    TIMES
+    POWER
+    PLUS
+    ID
+    DIVIDE
+    RPAREN
+    NEWLINE
+    MINUS
+    NOT
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> prog_body
+Rule 2     prog_body -> prog_body state
+Rule 3     prog_body -> state
+Rule 4     state -> state_id timeout param_block next_state
+Rule 5     state -> state_id timeout next_state
+Rule 6     state_id -> STATEID EQUALS INTEGER SEMI
+Rule 7     timeout -> TIMEOUT EQUALS INTEGER SEMI
+Rule 8     param_block -> param_block param
+Rule 9     param_block -> param
+Rule 10    param -> PARAM INTEGER COLON statement SEMI
+Rule 11    statement -> compare INTEGER
+Rule 12    statement -> compare INTEGER AND compare INTEGER
+Rule 13    statement -> compare INTEGER OR compare INTEGER
+Rule 14    compare -> EQUALS
+Rule 15    compare -> NE
+Rule 16    compare -> LT
+Rule 17    compare -> LE
+Rule 18    compare -> GT
+Rule 19    compare -> GE
+Rule 20    next_state -> NEXTSTATE COLON numer SEMI
+Rule 21    numer -> INTEGER COMMA numer
+Rule 22    numer -> INTEGER
+
+Terminals, with rules where they appear
+
+AND                  : 12
+COLON                : 10 20
+COMMA                : 21
+DIVIDE               : 
+EQUALS               : 6 7 14
+GE                   : 19
+GT                   : 18
+ID                   : 
+INTEGER              : 6 7 10 11 12 12 13 13 21 22
+LE                   : 17
+LPAREN               : 
+LT                   : 16
+MINUS                : 
+NE                   : 15
+NEWLINE              : 
+NEXTSTATE            : 20
+NOT                  : 
+OR                   : 13
+PARAM                : 10
+PLUS                 : 
+POWER                : 
+RPAREN               : 
+SEMI                 : 6 7 10 20
+STATEID              : 6
+TIMEOUT              : 7
+TIMES                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+compare              : 11 12 12 13 13
+next_state           : 4 5
+numer                : 20 21
+param                : 8 9
+param_block          : 4 8
+prog_body            : 1 2
+program              : 0
+state                : 2 3
+state_id             : 4 5
+statement            : 10
+timeout              : 4 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . prog_body
+    (2) prog_body -> . prog_body state
+    (3) prog_body -> . state
+    (4) state -> . state_id timeout param_block next_state
+    (5) state -> . state_id timeout next_state
+    (6) state_id -> . STATEID EQUALS INTEGER SEMI
+
+    STATEID         shift and go to state 1
+
+    state                          shift and go to state 2
+    prog_body                      shift and go to state 3
+    program                        shift and go to state 4
+    state_id                       shift and go to state 5
+
+state 1
+
+    (6) state_id -> STATEID . EQUALS INTEGER SEMI
+
+    EQUALS          shift and go to state 6
+
+
+state 2
+
+    (3) prog_body -> state .
+
+    STATEID         reduce using rule 3 (prog_body -> state .)
+    $end            reduce using rule 3 (prog_body -> state .)
+
+
+state 3
+
+    (1) program -> prog_body .
+    (2) prog_body -> prog_body . state
+    (4) state -> . state_id timeout param_block next_state
+    (5) state -> . state_id timeout next_state
+    (6) state_id -> . STATEID EQUALS INTEGER SEMI
+
+    $end            reduce using rule 1 (program -> prog_body .)
+    STATEID         shift and go to state 1
+
+    state                          shift and go to state 7
+    state_id                       shift and go to state 5
+
+state 4
+
+    (0) S' -> program .
+
+
+
+state 5
+
+    (4) state -> state_id . timeout param_block next_state
+    (5) state -> state_id . timeout next_state
+    (7) timeout -> . TIMEOUT EQUALS INTEGER SEMI
+
+    TIMEOUT         shift and go to state 8
+
+    timeout                        shift and go to state 9
+
+state 6
+
+    (6) state_id -> STATEID EQUALS . INTEGER SEMI
+
+    INTEGER         shift and go to state 10
+
+
+state 7
+
+    (2) prog_body -> prog_body state .
+
+    STATEID         reduce using rule 2 (prog_body -> prog_body state .)
+    $end            reduce using rule 2 (prog_body -> prog_body state .)
+
+
+state 8
+
+    (7) timeout -> TIMEOUT . EQUALS INTEGER SEMI
+
+    EQUALS          shift and go to state 11
+
+
+state 9
+
+    (4) state -> state_id timeout . param_block next_state
+    (5) state -> state_id timeout . next_state
+    (8) param_block -> . param_block param
+    (9) param_block -> . param
+    (20) next_state -> . NEXTSTATE COLON numer SEMI
+    (10) param -> . PARAM INTEGER COLON statement SEMI
+
+    NEXTSTATE       shift and go to state 14
+    PARAM           shift and go to state 13
+
+    param_block                    shift and go to state 12
+    param                          shift and go to state 15
+    next_state                     shift and go to state 16
+
+state 10
+
+    (6) state_id -> STATEID EQUALS INTEGER . SEMI
+
+    SEMI            shift and go to state 17
+
+
+state 11
+
+    (7) timeout -> TIMEOUT EQUALS . INTEGER SEMI
+
+    INTEGER         shift and go to state 18
+
+
+state 12
+
+    (4) state -> state_id timeout param_block . next_state
+    (8) param_block -> param_block . param
+    (20) next_state -> . NEXTSTATE COLON numer SEMI
+    (10) param -> . PARAM INTEGER COLON statement SEMI
+
+    NEXTSTATE       shift and go to state 14
+    PARAM           shift and go to state 13
+
+    param                          shift and go to state 19
+    next_state                     shift and go to state 20
+
+state 13
+
+    (10) param -> PARAM . INTEGER COLON statement SEMI
+
+    INTEGER         shift and go to state 21
+
+
+state 14
+
+    (20) next_state -> NEXTSTATE . COLON numer SEMI
+
+    COLON           shift and go to state 22
+
+
+state 15
+
+    (9) param_block -> param .
+
+    NEXTSTATE       reduce using rule 9 (param_block -> param .)
+    PARAM           reduce using rule 9 (param_block -> param .)
+
+
+state 16
+
+    (5) state -> state_id timeout next_state .
+
+    STATEID         reduce using rule 5 (state -> state_id timeout next_state .)
+    $end            reduce using rule 5 (state -> state_id timeout next_state .)
+
+
+state 17
+
+    (6) state_id -> STATEID EQUALS INTEGER SEMI .
+
+    TIMEOUT         reduce using rule 6 (state_id -> STATEID EQUALS INTEGER SEMI .)
+
+
+state 18
+
+    (7) timeout -> TIMEOUT EQUALS INTEGER . SEMI
+
+    SEMI            shift and go to state 23
+
+
+state 19
+
+    (8) param_block -> param_block param .
+
+    NEXTSTATE       reduce using rule 8 (param_block -> param_block param .)
+    PARAM           reduce using rule 8 (param_block -> param_block param .)
+
+
+state 20
+
+    (4) state -> state_id timeout param_block next_state .
+
+    STATEID         reduce using rule 4 (state -> state_id timeout param_block next_state .)
+    $end            reduce using rule 4 (state -> state_id timeout param_block next_state .)
+
+
+state 21
+
+    (10) param -> PARAM INTEGER . COLON statement SEMI
+
+    COLON           shift and go to state 24
+
+
+state 22
+
+    (20) next_state -> NEXTSTATE COLON . numer SEMI
+    (21) numer -> . INTEGER COMMA numer
+    (22) numer -> . INTEGER
+
+    INTEGER         shift and go to state 26
+
+    numer                          shift and go to state 25
+
+state 23
+
+    (7) timeout -> TIMEOUT EQUALS INTEGER SEMI .
+
+    NEXTSTATE       reduce using rule 7 (timeout -> TIMEOUT EQUALS INTEGER SEMI .)
+    PARAM           reduce using rule 7 (timeout -> TIMEOUT EQUALS INTEGER SEMI .)
+
+
+state 24
+
+    (10) param -> PARAM INTEGER COLON . statement SEMI
+    (11) statement -> . compare INTEGER
+    (12) statement -> . compare INTEGER AND compare INTEGER
+    (13) statement -> . compare INTEGER OR compare INTEGER
+    (14) compare -> . EQUALS
+    (15) compare -> . NE
+    (16) compare -> . LT
+    (17) compare -> . LE
+    (18) compare -> . GT
+    (19) compare -> . GE
+
+    EQUALS          shift and go to state 34
+    NE              shift and go to state 32
+    LT              shift and go to state 30
+    LE              shift and go to state 31
+    GT              shift and go to state 33
+    GE              shift and go to state 28
+
+    statement                      shift and go to state 27
+    compare                        shift and go to state 29
+
+state 25
+
+    (20) next_state -> NEXTSTATE COLON numer . SEMI
+
+    SEMI            shift and go to state 35
+
+
+state 26
+
+    (21) numer -> INTEGER . COMMA numer
+    (22) numer -> INTEGER .
+
+    COMMA           shift and go to state 36
+    SEMI            reduce using rule 22 (numer -> INTEGER .)
+
+
+state 27
+
+    (10) param -> PARAM INTEGER COLON statement . SEMI
+
+    SEMI            shift and go to state 37
+
+
+state 28
+
+    (19) compare -> GE .
+
+    INTEGER         reduce using rule 19 (compare -> GE .)
+
+
+state 29
+
+    (11) statement -> compare . INTEGER
+    (12) statement -> compare . INTEGER AND compare INTEGER
+    (13) statement -> compare . INTEGER OR compare INTEGER
+
+    INTEGER         shift and go to state 38
+
+
+state 30
+
+    (16) compare -> LT .
+
+    INTEGER         reduce using rule 16 (compare -> LT .)
+
+
+state 31
+
+    (17) compare -> LE .
+
+    INTEGER         reduce using rule 17 (compare -> LE .)
+
+
+state 32
+
+    (15) compare -> NE .
+
+    INTEGER         reduce using rule 15 (compare -> NE .)
+
+
+state 33
+
+    (18) compare -> GT .
+
+    INTEGER         reduce using rule 18 (compare -> GT .)
+
+
+state 34
+
+    (14) compare -> EQUALS .
+
+    INTEGER         reduce using rule 14 (compare -> EQUALS .)
+
+
+state 35
+
+    (20) next_state -> NEXTSTATE COLON numer SEMI .
+
+    STATEID         reduce using rule 20 (next_state -> NEXTSTATE COLON numer SEMI .)
+    $end            reduce using rule 20 (next_state -> NEXTSTATE COLON numer SEMI .)
+
+
+state 36
+
+    (21) numer -> INTEGER COMMA . numer
+    (21) numer -> . INTEGER COMMA numer
+    (22) numer -> . INTEGER
+
+    INTEGER         shift and go to state 26
+
+    numer                          shift and go to state 39
+
+state 37
+
+    (10) param -> PARAM INTEGER COLON statement SEMI .
+
+    NEXTSTATE       reduce using rule 10 (param -> PARAM INTEGER COLON statement SEMI .)
+    PARAM           reduce using rule 10 (param -> PARAM INTEGER COLON statement SEMI .)
+
+
+state 38
+
+    (11) statement -> compare INTEGER .
+    (12) statement -> compare INTEGER . AND compare INTEGER
+    (13) statement -> compare INTEGER . OR compare INTEGER
+
+    SEMI            reduce using rule 11 (statement -> compare INTEGER .)
+    AND             shift and go to state 40
+    OR              shift and go to state 41
+
+
+state 39
+
+    (21) numer -> INTEGER COMMA numer .
+
+    SEMI            reduce using rule 21 (numer -> INTEGER COMMA numer .)
+
+
+state 40
+
+    (12) statement -> compare INTEGER AND . compare INTEGER
+    (14) compare -> . EQUALS
+    (15) compare -> . NE
+    (16) compare -> . LT
+    (17) compare -> . LE
+    (18) compare -> . GT
+    (19) compare -> . GE
+
+    EQUALS          shift and go to state 34
+    NE              shift and go to state 32
+    LT              shift and go to state 30
+    LE              shift and go to state 31
+    GT              shift and go to state 33
+    GE              shift and go to state 28
+
+    compare                        shift and go to state 42
+
+state 41
+
+    (13) statement -> compare INTEGER OR . compare INTEGER
+    (14) compare -> . EQUALS
+    (15) compare -> . NE
+    (16) compare -> . LT
+    (17) compare -> . LE
+    (18) compare -> . GT
+    (19) compare -> . GE
+
+    EQUALS          shift and go to state 34
+    NE              shift and go to state 32
+    LT              shift and go to state 30
+    LE              shift and go to state 31
+    GT              shift and go to state 33
+    GE              shift and go to state 28
+
+    compare                        shift and go to state 43
+
+state 42
+
+    (12) statement -> compare INTEGER AND compare . INTEGER
+
+    INTEGER         shift and go to state 44
+
+
+state 43
+
+    (13) statement -> compare INTEGER OR compare . INTEGER
+
+    INTEGER         shift and go to state 45
+
+
+state 44
+
+    (12) statement -> compare INTEGER AND compare INTEGER .
+
+    SEMI            reduce using rule 12 (statement -> compare INTEGER AND compare INTEGER .)
+
+
+state 45
+
+    (13) statement -> compare INTEGER OR compare INTEGER .
+
+    SEMI            reduce using rule 13 (statement -> compare INTEGER OR compare INTEGER .)
+

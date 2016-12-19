@@ -1,0 +1,17 @@
+.\objects\functions.o: User\functions.c
+.\objects\functions.o: User\functions.h
+.\objects\functions.o: .\Sturtup\stm32f4xx.h
+.\objects\functions.o: .\CMSIS\Include\core_cm4.h
+.\objects\functions.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\functions.o: .\CMSIS\Include\core_cmInstr.h
+.\objects\functions.o: .\CMSIS\Include\core_cmFunc.h
+.\objects\functions.o: .\CMSIS\Include\core_cmSimd.h
+.\objects\functions.o: .\Sturtup\system_stm32f4xx.h
+.\objects\functions.o: .\Sturtup\stm32f4xx_conf.h
+.\objects\functions.o: .\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h
+.\objects\functions.o: .\Sturtup\stm32f4xx.h
+.\objects\functions.o: .\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
+.\objects\functions.o: .\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
+.\objects\functions.o: .\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
+.\objects\functions.o: .\STM32F4xx_StdPeriph_Driver\inc\misc.h
+.\objects\functions.o: User\main.h

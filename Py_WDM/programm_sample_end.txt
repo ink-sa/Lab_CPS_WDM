@@ -1,0 +1,9 @@
+//COMPILE PART end
+
+//END				
+				default:
+					error();
+			}	
+		}
+}
+//END end
